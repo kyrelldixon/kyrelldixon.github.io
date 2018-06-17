@@ -1,5 +1,6 @@
 .post-body {
   font-family: $font-family-posts;
+  text-align: center;
   @include mobile() {
     word-break: break-word;
   }
