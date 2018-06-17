@@ -4,10 +4,10 @@ title: "MathJax with Jekyll"
 date: 2014-02-16
 categories: opinion
 tags: [resources, jekyll]
-image: http://gastonsanchez.com/images/blog/mathjax_logo.png
+image: https://gastonsanchez.com/images/blog/mathjax_logo.png
 ---
 
-One of the rewards of switching my website to [Jekyll](http://jekyllrb.com/) is the
+One of the rewards of switching my website to [Jekyll](https://jekyllrb.com/) is the
 ability to support **MathJax**, which means I can write LaTeX-like equations that get
 nicely displayed in a web browser, like this one \\( \sqrt{\frac{n!}{k!(n-k)!}} \\) or
 this one \\( x^2 + y^2 = r^2 \\).
@@ -18,7 +18,7 @@ this one \\( x^2 + y^2 = r^2 \\).
 
 ### What's MathJax?
 
-If you check MathJax website [(www.mathjax.org)](http://www.mathjax.org/) you'll see
+If you check MathJax website [(www.mathjax.org)](https://www.mathjax.org/) you'll see
 that it *is an open source JavaScript display engine for mathematics that works in all
 browsers*.
 
@@ -26,7 +26,7 @@ browsers*.
 ### How to implement MathJax with Jekyll
 
 I followed the instructions described by Dason Kurkiewicz for
-[using Jekyll and Mathjax](http://dasonk.github.io/blog/2012/10/09/Using-Jekyll-and-Mathjax/).
+[using Jekyll and Mathjax](https://dasonk.github.io/blog/2012/10/09/Using-Jekyll-and-Mathjax/).
 
 Here are some important details. I had to modify the Ruby library for Markdown in
 my ```_config.yml``` file. Now I'm using redcarpet so the corresponding line in the
@@ -37,7 +37,7 @@ To load the MathJax javascript, I added the following lines in my layout ```page
 
 {% highlight r %}
 <script type="text/javascript"
-    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 {% endhighlight %}
 
@@ -48,7 +48,7 @@ Of course you can choose a different file location in your jekyll layouts.
 
 Here's a short list of examples. To know more about the details behind MathJax, you can
 always checked the provided documentation available at
-[http://docs.mathjax.org/en/latest/](http://docs.mathjax.org/en/latest/)
+[https://docs.mathjax.org/en/latest/](https://docs.mathjax.org/en/latest/)
 
 I'm assuming you are familiar with LaTeX. However, you should know that MathJax does not
 have the exactly same behavior as LaTeX. By default, the **tex2jax** preprocessor defines the

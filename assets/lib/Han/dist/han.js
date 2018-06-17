@@ -323,7 +323,7 @@ var UNICODE = {
 var TYPESET = (function() {
   var rWhite = '[\\x20\\t\\r\\n\\f]'
   // Whitespace characters
-  // http://www.w3.org/TR/css3-selectors/#whitespace
+  // https://www.w3.org/TR/css3-selectors/#whitespace
 
   var rPtOpen = UNICODE.punct.open
   var rPtClose = UNICODE.punct.close
@@ -876,8 +876,8 @@ return Fibre
 
 /**
  * findAndReplaceDOMText v 0.4.3
- * @author James Padolsey http://james.padolsey.com
- * @license http://unlicense.org/UNLICENSE
+ * @author James Padolsey https://james.padolsey.com
+ * @license https://unlicense.org/UNLICENSE
  *
  * Matches the text of a DOM node against a regular expression
  * and replaces each match (or node-separated portions of the match)
@@ -1438,7 +1438,7 @@ return Fibre
 var isNodeNormalizeNormal = (function() {
     //// Disabled `Node.normalize()` for temp due to
     //// issue below in IE11.
-    //// See: http://stackoverflow.com/questions/22337498/why-does-ie11-handle-node-normalize-incorrectly-for-the-minus-symbol
+    //// See: https://stackoverflow.com/questions/22337498/why-does-ie11-handle-node-normalize-incorrectly-for-the-minus-symbol
     var div = $.create( 'div' )
 
     div.appendChild($.create( '', '0-' ))

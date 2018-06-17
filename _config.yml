@@ -13,7 +13,7 @@ language: en
 date_format: '%Y-%m-%d'
 
 # URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com' and baseurl as '/child'
+## If your site is put in a subdirectory, set url as 'https://yoursite.com' and baseurl as '/child'
 url:
 baseurl:
 permalink: pretty
@@ -101,7 +101,7 @@ copyright: true
 
 # Canonical, set a canonical link tag in your jekyll, you could use it for your SEO of blog.
 # See: https://support.google.com/webmasters/answer/139066
-# Tips: Before you open this tag, remember set up your URL in _config.yml ( ex. url: http://yourdomain.com )
+# Tips: Before you open this tag, remember set up your URL in _config.yml ( ex. url: https://yourdomain.com )
 canonical: true
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.
@@ -247,7 +247,7 @@ toc:
 
 
 # Creative Commons 4.0 International License.
-# http://creativecommons.org/
+# https://creativecommons.org/
 # Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
 #creative_commons: by-nc-sa
 #creative_commons:
@@ -284,7 +284,7 @@ sidebar:
 #links_layout: block
 #links_layout: inline
 #links:
-  #Title: http://example.com/
+  #Title: https://example.com/
 
 
 # ---------------------------------------------------------------
@@ -399,7 +399,7 @@ changyan:
   appkey:
 
 # Support for youyan comments system.
-# You can get your uid from http://www.uyan.cc
+# You can get your uid from https://www.uyan.cc
 #youyan_uid: your uid
 
 # Support for LiveRe comments system.
@@ -450,7 +450,7 @@ gitalk:
 
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
-# you can visit http://dev.duoshuo.com get duoshuo user id.
+# you can visit https://dev.duoshuo.com get duoshuo user id.
 duoshuo_info:
   ua_enable: true
   admin_enable: false
@@ -501,7 +501,7 @@ leancloud_visitors:
   app_key: #<app_key>
 
 # Show PV/UV of the website/page with busuanzi.
-# Get more information on http://ibruce.info/2015/04/04/busuanzi/
+# Get more information on https://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
   # count values only if the other configs are false
   enable: false
@@ -633,7 +633,7 @@ vendors:
   jquery:
 
   # Internal version: 2.1.5
-  # See: http://fancyapps.com/fancybox/
+  # See: https://fancyapps.com/fancybox/
   fancybox:
   fancybox_css:
 
@@ -646,11 +646,11 @@ vendors:
   lazyload:
 
   # Internal version: 1.2.1
-  # See: http://VelocityJS.org
+  # See: https://VelocityJS.org
   velocity:
 
   # Internal version: 1.2.1
-  # See: http://VelocityJS.org
+  # See: https://VelocityJS.org
   velocity_ui:
 
   # Internal version: 0.7.9
@@ -658,7 +658,7 @@ vendors:
   ua_parser:
 
   # Internal version: 4.6.2
-  # See: http://fontawesome.io/
+  # See: https://fontawesome.io/
   fontawesome:
 
   # Internal version: 1

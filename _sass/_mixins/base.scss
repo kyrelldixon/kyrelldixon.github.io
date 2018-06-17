@@ -60,7 +60,7 @@
   @return floor(random() * ($max - $min + 1) + $min);
 }
 
-// Clearfix. http://nicolasgallagher.com/micro-clearfix-hack/
+// Clearfix. https://nicolasgallagher.com/micro-clearfix-hack/
 @mixin clearfix() {
   &:before,
   &:after {

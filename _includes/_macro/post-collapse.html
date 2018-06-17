@@ -1,5 +1,5 @@
 {% comment %} post-collapse(post) {% endcomment %}
-  <article class="post post-type-{{ post.type | default: 'normal' }}" itemscope itemtype="http://schema.org/Article" {% if route %}route="{{ route }}"{% endif %}>
+  <article class="post post-type-{{ post.type | default: 'normal' }}" itemscope itemtype="https://schema.org/Article" {% if route %}route="{{ route }}"{% endif %}>
     <header class="post-header">
 
       <{% if site.seo %}h3{% else %}h2{% endif %} class="post-title">
