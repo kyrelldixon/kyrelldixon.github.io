@@ -25,8 +25,9 @@ This data set contains the following features:
 - 'Timestamp': Time at which consumer clicked on Ad or closed window
 - 'Clicked on Ad': 0 or 1 indicated clicking on Ad
 
-## Importing Libraries
+# Checking Out the Data
 
+## Importing Libraries
 
 ```python
 import pandas as pd
@@ -133,8 +134,6 @@ ad.head()
   </tbody>
 </table>
 </div>
-
-
 
 ## Data Summary
 
@@ -252,29 +251,21 @@ ad.describe()
 </table>
 </div>
 
+# Exploratory Data Analysis
 
-
-## Exploratory Data Analysis
-
+Here I'm doing a general exploration of the data to see if anything stands out or if there are any noticeable trends.
 
 ```python
 sns.set_context('notebook')
 sns.set_style('white')
 ```
 
-
 ```python
 ad['Age'].plot.hist(bins=40)
 plt.xlabel('Age')
 ```
 
-
-
-
     <matplotlib.text.Text at 0x10d75b978>
-
-
-
 
 ![png](/assets/images/Ad_Analysis_files/Ad_Analysis_9_1.png)
 
@@ -286,17 +277,9 @@ The age counts follow a normal distribution with a spike around 40-42 years old.
 sns.countplot('Age',data=ad,hue='Clicked on Ad')
 ```
 
-
-
-
     <matplotlib.axes._subplots.AxesSubplot at 0x10d982fd0>
 
-
-
-
 ![png](/assets/images/Ad_Analysis_files/Ad_Analysis_11_1.png)
-
-
 
 ```python
 sns.factorplot(x='Clicked on Ad',y='Age',data=ad,kind='swarm')
@@ -328,66 +311,37 @@ sns.heatmap(ad.corr())
 sns.factorplot(x='Clicked on Ad',y='Daily Time Spent on Site',data=ad,kind='swarm')
 ```
 
-
-
-
     <seaborn.axisgrid.FacetGrid at 0x1131ff6d8>
 
-
-
-
 ![png](/assets/images/Ad_Analysis_files/Ad_Analysis_16_1.png)
-
-
 
 ```python
 sns.factorplot(x='Clicked on Ad',y='Area Income',data=ad,kind='swarm')
 ```
 
-
-
-
     <seaborn.axisgrid.FacetGrid at 0x112ac8c18>
 
-
-
-
 ![png](/assets/images/Ad_Analysis_files/Ad_Analysis_17_1.png)
-
-
 
 ```python
 sns.factorplot(x='Clicked on Ad',y='Daily Internet Usage',data=ad,kind='swarm')
 ```
 
-
-
-
     <seaborn.axisgrid.FacetGrid at 0x112ac8ac8>
 
-
-
-
 ![png](/assets/images/Ad_Analysis_files/Ad_Analysis_18_1.png)
-
-
 
 ```python
 sns.factorplot(x='Clicked on Ad',y='Age',data=ad,kind='swarm')
 ```
 
-
-
-
     <seaborn.axisgrid.FacetGrid at 0x113789d68>
-
-
-
 
 ![png](/assets/images/Ad_Analysis_files/Ad_Analysis_19_1.png)
 
 
 ## Findings
+
 Most of the groupings have overlap with another group when analyzing who clicked on an ad relative to each feature. The highest levels of grouping was found between Clicked on Ad and:
 
 - Daily Internet Usage
@@ -396,7 +350,6 @@ Most of the groupings have overlap with another group when analyzing who clicked
 
 Being male didn't seem to have much affect on whether an ad was clicked. I'm going to model the data based on all columns and just the most relevant columns.
 
-
 ```python
 all_columns = ['Male','Age','Daily Internet Usage', 'Daily Time Spent on Site', 'Area Income']
 relevant_columns = ['Daily Internet Usage', 'Daily Time Spent on Site', 'Area Income']
@@ -404,16 +357,13 @@ relevant_columns = ['Daily Internet Usage', 'Daily Time Spent on Site', 'Area In
 
 # Prediction and Modeling
 
-
 ```python
 from sklearn.preprocessing import StandardScaler
 ```
 
-
 ```python
 scaler = StandardScaler()
 ```
-
 
 ```python
 scaler.fit(ad[all_columns])
@@ -494,18 +444,15 @@ scaled_ad.head()
 </table>
 </div>
 
-
-
 ## Setting up data
-I'm using two training and testing sets on the standardized data.
 
+I'm using two training and testing sets on the standardized data.
 
 ```python
 X_all = scaled_ad
 X_rel = scaled_ad[relevant_columns]
 y = ad['Clicked on Ad']
 ```
-
 
 ```python
 X_train, X_test, y_train, y_test = train_test_split(X_all, y, test_size=0.3, random_state=42)
@@ -514,27 +461,19 @@ X_rel_train, X_rel_test, y_rel_train, y_rel_test = train_test_split(X_rel, y, te
 
 ## Logisitic Regression
 
-
 ```python
 logmodel = LogisticRegression()
 logmodel.fit(X_train,y_train)
 ```
-
-
-
 
     LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
 
-
-
-
 ```python
 pred = logmodel.predict(X_test)
 ```
-
 
 ```python
 print(classification_report(y_test,pred))
@@ -543,24 +482,24 @@ print(confusion_matrix(y_test,pred))
 ```
 
                  precision    recall  f1-score   support
-    
+
               0       0.96      0.98      0.97       146
               1       0.98      0.96      0.97       154
-    
+
     avg / total       0.97      0.97      0.97       300
-    
-    
-    
+
+
     [[143   3]
      [  6 148]]
 
+## Findings
 
+Training the logistic model on all the data actually led to pretty good results. I want to see if narrowing down the columns to the most relevant ones can boost the accuracy even more.
 
 ```python
 logmodel.fit(X_rel_train,y_rel_train)
 pred_rel = logmodel.predict(X_rel_test)
 ```
-
 
 ```python
 print(classification_report(y_rel_test,pred_rel))
@@ -569,20 +508,19 @@ print(confusion_matrix(y_rel_test,pred_rel))
 ```
 
                  precision    recall  f1-score   support
-    
+
               0       0.93      0.97      0.95       146
               1       0.97      0.93      0.95       154
-    
+
     avg / total       0.95      0.95      0.95       300
-    
-    
-    
+
+
     [[141   5]
      [ 11 143]]
 
+It turns out that the accuracy was actually worse. This is likely due to the fact that there were very few columns to begin with so having more data was better than less in this case. This could also be due to the fact that the dataset isn't based on real world data.
 
 ## K-Nearest Neighbors
-
 
 ```python
 knn = KNeighborsClassifier()
@@ -590,7 +528,6 @@ knn.fit(X_train,y_train)
 pred = knn.predict(X_test)
 ```
 
-
 ```python
 print(classification_report(y_test,pred))
 print('\n')
@@ -598,24 +535,20 @@ print(confusion_matrix(y_test,pred))
 ```
 
                  precision    recall  f1-score   support
-    
+
               0       0.92      0.97      0.95       146
               1       0.97      0.92      0.95       154
-    
+
     avg / total       0.95      0.95      0.95       300
-    
-    
-    
+
+
     [[142   4]
      [ 12 142]]
-
-
 
 ```python
 knn.fit(X_rel_train,y_rel_train)
 pred_rel = knn.predict(X_rel_test)
 ```
-
 
 ```python
 print(classification_report(y_rel_test,pred_rel))
@@ -624,31 +557,35 @@ print(confusion_matrix(y_rel_test,pred_rel))
 ```
 
                  precision    recall  f1-score   support
-    
+
               0       0.92      0.96      0.94       146
               1       0.96      0.92      0.94       154
-    
+
     avg / total       0.94      0.94      0.94       300
-    
-    
-    
+
+
     [[140   6]
      [ 12 142]]
 
+Here I was expecting K-Nearest Neighbors to do a little better than the logistic regression based on past experience. Just goes to show you have to treat each dataset as its own unique case.
 
+The model still worked better having more features to work with.
+
+## Optimizing K-Nearest Neighbors
+
+Previously, I used the default number of neighbors for the classifier. Here I'm going to find the best number to work by minimizing the error rate.
 
 ```python
 error_rate = []
 
 # Will take some time
 for i in range(1,40):
-    
+
     knn = KNeighborsClassifier(n_neighbors=i)
     knn.fit(X_train,y_train)
     pred_i = knn.predict(X_test)
     error_rate.append(np.mean(pred_i != y_test))
 ```
-
 
 ```python
 plt.figure(figsize=(10,6))
@@ -659,17 +596,11 @@ plt.xlabel('K')
 plt.ylabel('Error Rate')
 ```
 
-
-
-
     <matplotlib.text.Text at 0x11464c828>
-
-
-
 
 ![png](/assets/images/Ad_Analysis_files/Ad_Analysis_43_1.png)
 
-
+Based on the graph there were several points the had the minimum error rate. I just chose the smallest value of 14.
 
 ```python
 knn = KNeighborsClassifier(n_neighbors=14)
@@ -680,7 +611,6 @@ pred = knn.predict(X_test)
 knn.fit(X_rel_train,y_rel_train)
 pred_rel = knn.predict(X_rel_test)
 ```
-
 
 ```python
 print('FOR ALL COLUMNS:')
@@ -697,33 +627,33 @@ print(confusion_matrix(y_rel_test,pred_rel))
 
     FOR ALL COLUMNS:
                  precision    recall  f1-score   support
-    
+
               0       0.92      0.99      0.96       146
               1       0.99      0.92      0.96       154
-    
+
     avg / total       0.96      0.96      0.96       300
-    
-    
-    
+
+
     [[145   1]
      [ 12 142]]
-    
-    
+
+
     FOR RELEVANT COLUMNS:
                  precision    recall  f1-score   support
-    
+
               0       0.92      0.97      0.94       146
               1       0.97      0.92      0.94       154
-    
+
     avg / total       0.94      0.94      0.94       300
-    
-    
-    
+
+
     [[141   5]
      [ 12 142]]
 
+Using 14 for the `n_neighbors` parameter improved the accuracy as expected, but not enough to do better than the logisitic regression.
 
+## Conclusion
 
-```python
+Overall I was able to get a 97% accuracy in predicting whether a person will click an ad based on some user data. This information could be used to determine the best users to target for an ad campaign.
 
-```
+While ad clicks were measured, it would likely be more helpful to determine who is more likely to purchase a product given a set of user data. Since advertisements are meant to drive purchases, being able to directly predict user value given data would decrease costs spent on ads while increasing revenue.
