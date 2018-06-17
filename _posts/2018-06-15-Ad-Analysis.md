@@ -1,6 +1,6 @@
 ---
 title: Advertising Analysis Project
-description: NexT is a high quality elegant Jekyll theme ported from Hexo Next. It is crafted from scratch, with love.
+description: In this project we will be working with a fake advertising data set, indicating whether or not a particular internet user clicked on an Advertisement. Trying to create a model that will predict whether or not they will click on an ad based off the features of that user.
 categories:
   - Jupyter Notebook
   - Machine Learning
@@ -11,8 +11,6 @@ tags:
   - Classification
   - Data Visualization
 ---
-
-In this project we will be working with a fake advertising data set, indicating whether or not a particular internet user clicked on an Advertisement. Trying to create a model that will predict whether or not they will click on an ad based off the features of that user.
 
 This data set contains the following features:
 
@@ -49,7 +47,7 @@ ad = pd.read_csv('advertising.csv')
 ad.head()
 ```
 
-<div>
+<div class="dataframe-container">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -164,7 +162,7 @@ ad.info()
 ad.describe()
 ```
 
-<div>
+<div class="dataframe-container">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -421,21 +419,12 @@ scaler = StandardScaler()
 scaler.fit(ad[all_columns])
 ```
 
-
-
-
     StandardScaler(copy=True, with_mean=True, with_std=True)
-
-
-
 
 ```python
 scaled_features = scaler.transform(ad[all_columns])
 scaled_features[:5]
 ```
-
-
-
 
     array([[-0.96269532, -0.11490498,  1.73403   ,  0.24926659,  0.50969109],
            [ 1.03875025, -0.57042523,  0.31380538,  0.96113227,  1.00253021],
@@ -443,18 +432,12 @@ scaled_features[:5]
            [ 1.03875025, -0.79818535,  1.50157989,  0.57743162, -0.01445564],
            [-0.96269532, -0.11490498,  1.03873069,  0.21266356,  1.40886751]])
 
-
-
-
 ```python
 scaled_ad = pd.DataFrame(scaled_features,columns=all_columns)
 scaled_ad.head()
 ```
 
-
-
-
-<div>
+<div class="dataframe-container">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
